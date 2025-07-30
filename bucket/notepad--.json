@@ -1,11 +1,9 @@
 {
     "version": "3.4",
-    "description": "一个文本编辑器。A text editor.",
+    "description": "一个支持windows/linux/mac的文本编辑器，目标是要替换notepad++，来自中国。",
     "homepage": "https://github.com/cxasm/notepad--",
-    "license": {
-        "identifier": "GPL-3.0-only",
-        "url": "https://github.com/cxasm/notepad--/blob/main/LICENSE"
-    },
+    "license": "GPL-3.0-or-later",
+    "notes": "config location: C:\\Users\\<your username>\\AppData\\Roaming\\notepad - https://github.com/viCrack",
     "architecture": {
         "64bit": {
             "url": "https://github.com/cxasm/notepad--/releases/download/notepad-v3.4/Notepad--v3.4-win10-portable.zip",
@@ -13,46 +11,23 @@
         }
     },
     "extract_dir": "Notepad--v3.4-win10-portable",
-    "bin": "Notepad--.exe",
     "shortcuts": [
         [
             "Notepad--.exe",
             "Notepad--"
         ]
     ],
-    "pre_install": [
-        "$bucket = if ($bucket) { $bucket } else { (scoop config).'abgox-abyss-bucket-name' }",
-        ". \"$bucketsdir\\$bucket\\bin\\utils.ps1\"",
-        "A-Start-Install",
-        "A-New-LinkDirectory @(\"$env:AppData\\notepad\")"
-    ],
-    "post_install": [
-        "$bucket = if ($bucket) { $bucket } else { (scoop config).'abgox-abyss-bucket-name' }",
-        ". \"$bucketsdir\\$bucket\\bin\\utils.ps1\"",
-        "A-Complete-Install"
-    ],
-    "pre_uninstall": [
-        "$bucket = if ($install.bucket) { $install.bucket } else { (scoop config).'abgox-abyss-bucket-name' }",
-        ". \"$bucketsdir\\$bucket\\bin\\utils.ps1\"",
-        "A-Start-Uninstall",
-        "A-Stop-Process",
-        "A-Remove-Link"
-    ],
-    "post_uninstall": [
-        "$bucket = if ($install.bucket) { $install.bucket } else { (scoop config).'abgox-abyss-bucket-name' }",
-        ". \"$bucketsdir\\$bucket\\bin\\utils.ps1\"",
-        "A-Complete-Uninstall"
-    ],
     "checkver": {
-        "url": "https://github.com/cxasm/notepad--/releases/latest",
-        "regex": "/tree/notepad-(?:v|V)?([^\"?]+)"
+        "url": "https://api.github.com/repos/cxasm/notepad--/releases/latest",
+        "jsonpath": "$..browser_download_url",
+        "regex": "/Notepad--v([\\d.]+)-"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/cxasm/notepad--/releases/download/notepad-v$majorVersion.$minorVersion/Notepad--v$version-win10-portable.zip"
+                "url": "https://github.com/cxasm/notepad--/releases/download/notepad-v$version/Notepad--v$version-win10-portable.zip",
+                "extract_dir": "Notepad--v$version-win10-portable"
             }
-        },
-        "extract_dir": "Notepad--v$version-win10-portable"
+        }
     }
 }
