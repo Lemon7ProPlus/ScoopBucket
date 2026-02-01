@@ -1,11 +1,12 @@
 {
     "version": "144.0.7559.110",
-    "description": "Google Chrome with Chrome++ support (persisted configuration).",
+    "description": "Google Chrome (portable) with Chrome++ support via persist.",
     "homepage": "https://www.google.com/chrome/",
     "license": {
         "identifier": "Freeware",
         "url": "https://www.google.com/chrome/terms/"
     },
+
     "architecture": {
         "64bit": {
             "url": "https://dl.google.com/release2/chrome/ew64l42idv7ya4fzpsashmcdzy_144.0.7559.110/144.0.7559.110_chrome_installer_uncompressed.exe#/dl.7z",
@@ -40,32 +41,19 @@
         "chrome++.ini"
     ],
 
-    "post_install": [
-        "if (!(Test-Path \"$persist_dir\\chrome++.ini\")) {",
-        "    @(",
-        "        '; Chrome++ default config',",
-        "        '; https://github.com/icy37785/ChromePlus',",
-        "        '',",
-        "        '[general]'",
-        "    ) | Set-Content -Encoding UTF8 \"$persist_dir\\chrome++.ini\"",
-        "}"
-    ],
-
     "checkver": {
         "script": [
             "$AppID = '{8A69D345-D564-463C-AFF1-A69D9E530F96}'",
-            "$ArchParams = @{ x64='x64-stable'; x86='x86-stable'; arm64='arm64-stable' }",
             "$Body = @(",
             "  '<?xml version=\"1.0\" encoding=\"utf-8\"?>',",
             "  '<request protocol=\"3.0\">',",
             "  '  <os platform=\"win\" version=\"10.0.22000\" arch=\"x64\"/>',",
-            "  \"  <app appid=\\\"$AppID\\\" ap=\\\"$($ArchParams.x64)\\\" version=\\\"\\\">\",",
+            "  \"  <app appid=\\\"$AppID\\\" ap=\\\"x64-stable\\\" version=\\\"\\\">\",",
             "  '    <updatecheck/>',",
             "  '  </app>',",
             "  '</request>'",
             ") -join \"`n\"",
-            "$r = Invoke-RestMethod -Method Post -Uri 'https://update.googleapis.com/service/update2' -Body $Body",
-            "$r.response.app.updatecheck.manifest.version"
+            "(Invoke-RestMethod -Method Post -Uri 'https://update.googleapis.com/service/update2' -Body $Body).response.app.updatecheck.manifest.version"
         ],
         "regex": "([\\d.]+)"
     },
