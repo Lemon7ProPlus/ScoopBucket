@@ -20,24 +20,20 @@
     "bin": [
         [
             "chrome.exe",
-            "chrome",
-            "--user-data-dir=\"$dir\\User Data\""
+            "chrome"
         ],
         [
             "chrome.exe",
-            "google-chrome",
-            "--user-data-dir=\"$dir\\User Data\""
+            "google-chrome"
         ]
     ],
     "shortcuts": [
         [
             "chrome.exe",
-            "Google Chrome",
-            "--user-data-dir=\"$dir\\User Data\""
+            "Google Chrome"
         ]
     ],
     "persist":[
-        "User Data",
         "version.dll",
         "chrome++.ini"
     ],
