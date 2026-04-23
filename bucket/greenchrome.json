@@ -38,12 +38,15 @@
         "chrome++.ini"
     ],
     "post_install": [
-        "$apps = Split-Path $dir -Parent",
-        "$src = Join-Path $apps 'chrome-plus\\current\\x64\\App\\version.dll'",
+        "$src = Join-Path $env:SCOOP 'apps\\chrome-plus\\current\\x64\\App\\version.dll'",
         "$dst = Join-Path $dir 'version.dll'",
+        "if (!(Test-Path $src)) {",
+        "    Write-Host 'version.dll not found in chrome-plus, skip.'",
+        "    return",
+        "}",
         "if (Test-Path $dst) { Remove-Item $dst -Force }",
         "New-Item -ItemType SymbolicLink -Path $dst -Target $src | Out-Null"
-    ],
+    ]
     "env_set": {
         "CHROME_EXECUTABLE": "$dir\\chrome.exe"
     },
