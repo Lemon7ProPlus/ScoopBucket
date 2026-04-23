@@ -46,7 +46,7 @@
         "}",
         "if (Test-Path $dst) { Remove-Item $dst -Force }",
         "New-Item -ItemType SymbolicLink -Path $dst -Target $src | Out-Null"
-    ]
+    ],
     "env_set": {
         "CHROME_EXECUTABLE": "$dir\\chrome.exe"
     },
