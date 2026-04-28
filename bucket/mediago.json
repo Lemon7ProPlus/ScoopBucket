@@ -15,7 +15,7 @@
     "bin": "mediago-community.exe",
     "shortcuts": [
         [
-            "mediago.exe",
+            "mediago-community.exe",
             "Media Go"
         ]
     ],
