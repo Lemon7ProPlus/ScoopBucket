@@ -24,5 +24,10 @@
             "hash": "240240e32f10bc7d4124c1c5603313e243cabaae80e174e2c6eb27f5b1e1ebe9"
         }
     },
-    "bin": "claude-153.exe"
+    "bin": [
+      [
+        "claude.exe",
+        "claude-153"
+      ]
+    ]
 }
