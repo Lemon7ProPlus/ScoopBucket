@@ -25,7 +25,9 @@
         }
     },
     "bin": [
-      "claude.exe",
-      "claude-165"
+      [
+        "claude.exe",
+        "claude-165"
+      ]
     ]
 }
