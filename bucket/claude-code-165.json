@@ -24,5 +24,8 @@
             "hash": "3b78a4cb3b5e4dba26d00a9d2a3b1286ded68d8dc04249ff0187cb5756731575"
         }
     },
-    "bin": "claude-165.exe",
+    "bin": [
+      "claude.exe",
+      "claude-165"
+    ]
 }
